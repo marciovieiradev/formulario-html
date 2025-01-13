@@ -3,86 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulário Simples</title>
+    <title>Formulário de Cadastro</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            padding: 20px;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
         }
 
         .form-container {
-            background-color: white;
-            padding: 20px;
+            background-color: #fff;
+            padding: 30px;
             border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            max-width: 500px;
-            margin: auto;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
         }
 
-        input[type="text"], input[type="submit"] {
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .input-field {
+            margin-bottom: 15px;
+            width: 100%;
+        }
+
+        .input-field input {
             width: 100%;
             padding: 10px;
-            margin: 10px 0;
-            border-radius: 5px;
             border: 1px solid #ccc;
+            border-radius: 4px;
         }
 
-        input[type="submit"] {
+        .input-field label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .submit-btn {
             background-color: #4CAF50;
             color: white;
+            padding: 10px;
             border: none;
+            border-radius: 4px;
+            width: 100%;
+            cursor: pointer;
+            font-size: 16px;
         }
 
-        input[type="submit"]:hover {
+        .submit-btn:hover {
             background-color: #45a049;
         }
     </style>
 </head>
 <body>
-
     <div class="form-container">
-        <h2>Cadastro de Usuário</h2>
-        <form id="formulario" method="post">
-            <label for="nome">Nome:</label>
-            <input type="text" id="nome" name="nome" required>
-
-            <label for="funcao">Função:</label>
-            <input type="text" id="funcao" name="funcao" required>
-
-            <input type="submit" value="Enviar">
+        <h1>Cadastro</h1>
+        <form id="formulario" action="https://script.google.com/macros/s/AKfycbwJCrYFV2koBfMs3ihax4eUHLrWsUcCkDWUJCp0RM-acLvOxpGADyvkkTlHzzmBZI98/exec" method="POST">
+            <div class="input-field">
+                <label for="nome">Nome</label>
+                <input type="text" id="nome" name="nome" required>
+            </div>
+            <div class="input-field">
+                <label for="funcao">Função</label>
+                <input type="text" id="funcao" name="funcao" required>
+            </div>
+            <button type="submit" class="submit-btn">Enviar</button>
         </form>
     </div>
-
-    <script>
-        // Captura o formulário e faz a requisição para o Google Sheets
-        document.getElementById('formulario').onsubmit = function(e) {
-            e.preventDefault();
-            var nome = document.getElementById('nome').value;
-            var funcao = document.getElementById('funcao').value;
-
-            // Envia os dados para o Google Sheets
-            fetch('https://script.google.com/macros/s/AKfycbwJCrYFV2koBfMs3ihax4eUHLrWsUcCkDWUJCp0RM-acLvOxpGADyvkkTlHzzmBZI98/exec', {
-                method: 'POST',
-                body: new URLSearchParams({
-                    'nome': nome,
-                    'funcao': funcao
-                })
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.result === 'success') {
-                    alert('Dados enviados com sucesso!');
-                } else {
-                    alert('Erro ao enviar os dados.');
-                }
-            })
-            .catch(error => {
-                alert('Erro: ' + error);
-            });
-        };
-    </script>
-
 </body>
 </html>
-
