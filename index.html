@@ -1,4 +1,4 @@
-html:<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
@@ -52,7 +52,7 @@ html:<!DOCTYPE html>
 <body>
     <div class="container">
         <h1>Formulário de Cadastro</h1>
-        <form id="Formulário de Cadastro" action="https://script.google.com/macros/s/AKfycbxjhCMVK1smZgS--c3GEZaDO1_21vBA9oMfZXP_bXUNrCxuQe0NYvq9kSzLToJXx0i7/exec" method="POST">
+        <form id="formulario" action="https://script.google.com/macros/s/AKfycbxjhCMVK1smZgS--c3GEZaDO1_21vBA9oMfZXP_bXUNrCxuQe0NYvq9kSzLToJXx0i7/exec" method="POST">
             <label for="nome">Nome:</label>
             <input type="text" id="nome" name="nome" required>
 
@@ -66,7 +66,7 @@ html:<!DOCTYPE html>
 
     <script>
         document.getElementById('formulario').onsubmit = async function(event) {
-            event.preventDefault();
+            event.preventDefault();  // Evita que o formulário seja enviado da maneira tradicional
             
             let formData = new FormData(this);
             
@@ -81,6 +81,9 @@ html:<!DOCTYPE html>
             if (result.status === 'sucesso') {
                 respostaDiv.textContent = result.mensagem;
                 respostaDiv.style.color = 'green';
+                
+                // Limpar os campos do formulário após o sucesso
+                this.reset();  // Limpa o formulário
             } else {
                 respostaDiv.textContent = "Erro ao salvar os dados: " + result.mensagem;
                 respostaDiv.style.color = 'red';
